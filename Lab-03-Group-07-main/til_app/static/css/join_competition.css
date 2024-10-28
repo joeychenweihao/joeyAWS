@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+    background: url("../image/mainpage3.jpg") no-repeat center center fixed;
+    background-size: cover;
+    scroll-behavior: smooth;
+    padding-top: 80px;
+}
+
+
+
+:root {
+    --body-bg: #24282f;
+}
+
+
+.wrapper {
+    padding: 15px;
+}
+
+
+h2 {
+    position: relative;
+    vertical-align: middle;
+    padding: 10px;
+    
+    color: #ccc;
+    margin: 0;
+    font-size: 34px;
+    padding-left: 40px; 
+    padding-right: 40px; 
+}
+
+h2 strong {
+    vertical-align: middle;
+    position: relative;
+    z-index: 2;
+    background-color: #000000;
+    padding: 4px 8px;
+}
+
+h2 span {
+    vertical-align: middle;
+    font-size: 34px;
+    color: #ccc;
+    margin-left: 10px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    bottom: 50%;
+    margin-bottom: -2px;
+    height: 2px;
+    left: 0;
+    right: 0;
+    background-color: #ccc;
+    
+
+}
+
+.month-section {
+    margin-bottom: 40px; 
+    padding: 20px;
+
+}
+
+.month-section h2 {
+    margin-bottom: 20px;
+}
+
+
+
+
+.cards {
+    display: flex;
+    flex-flow: row wrap;
+    padding-left: 40px; 
+    padding-right: 40px;
+}
+
+.card {
+    position: relative;
+    margin: 20px;
+    width: 180px;
+    height: 270px;
+    overflow: hidden;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+    transform-origin: center top;
+    transform-style: preserve-3d;
+    transform: translateZ(0);
+    transition: 0.3s;
+}
+
+.card img {
+    width: 100%;
+    min-height: 100%;
+}
+
+.card figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    background: none;
+    color: #fff;
+    transform: translateY(100%);
+    transition: 0.3s;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    z-index: 10;
+    width: 200%;
+    height: 100%;
+    top: -90%;
+    left: -20px;
+    opacity: 0.1;
+    transform: rotate(45deg);
+    background: linear-gradient(to top, transparent, #fff 15%, rgba(255, 255, 255, 0.5));
+    transition: 0.3s;
+}
+
+
+.card:hover, .card:focus, .card:active {
+    box-shadow: 0 8px 16px 3px rgba(0, 0, 0, 0.6);
+    transform: translateY(-3px) scale(1.05) rotateX(15deg);
+}
+
+.card:hover figcaption,
+.card:focus figcaption,
+.card:active figcaption {
+    transform: none;
+}
+
+.card:hover::after,
+.card:focus::after,
+.card:active::after {
+    transform: rotate(25deg);
+    top: -40%;
+    opacity: 0.15;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    overflow: hidden; 
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    max-height: 80%; 
+    overflow-y: auto; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover, .close:focus {
+    color: #000;
+}
+
+
+#payment-form input, 
+#payment-form button {
+    width: 100%; 
+    margin-bottom: 15px;
+}
+
+
+.submit-payment {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+.submit-payment:hover {
+    background-color: #218838;
+}
+
+
+
+
+
+
+
+/* Booking Form */
+.booking-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.booking-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.booking-container form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.booking-container form input,
+.booking-container form select {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.booking-container form button {
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.booking-container form button:hover {
+    background-color: #0056b3;
+}
+
+.confirm-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    text-align: center;
+}
+
+.confirm-button:hover {
+    background-color: #0056b3;
+}
+
+.blur {
+    filter: blur(5px); 
+    transition: filter 0.3s ease; 
+}
+
+
+#competitor-phone {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    transition: border-color 0.3s ease;
+}
+
+
+#competitor-phone:focus {
+    border-color: #007BFF; 
+    outline: none;
+}
+
+
+.payment-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 50px auto;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.payment-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.registration-info, .payment-info {
+    margin-bottom: 20px;
+}
+
+.payment-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.payment-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.payment-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.payment-container button:hover {
+    background-color: #218838;
+}
+
+#payment-form label, 
+#payment-form input, 
+#payment-form button {
+    display: block;
+    width: 100%; 
+    margin-bottom: 15px; 
+}
+
+
+.submit-payment {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-payment:hover {
+    background-color: #218838;
+}
+

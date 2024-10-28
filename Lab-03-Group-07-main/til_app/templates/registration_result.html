@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Registration Result
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/registration_result.css' %}">
+
+<div class="modal" style="padding-top: 80px;"> 
+    <div class="modal-content booking-container" style="max-width: 600px; margin: 0 auto; padding: 30px; background-color: #ffffff; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-radius: 10px; border: 1px solid #ddd; text-align: center;">
+        <h2 class="text-center mb-4" style="font-weight: bold; color: #333;">Competition Registration Status</h2>
+    
+        {% if payment_success %}
+            <p class="text-left mt-3" style="font-size: 18px; color: #555;">
+                Congratulations! You have successfully registered for the competition: <strong>{{ competition.name }}</strong>.
+            </p>
+            <p class="text-left mt-3" style="font-size: 16px; color: #555;">
+                <strong>Start Date:</strong> {{ competition.start_date }}<br>
+                <strong>End Date:</strong> {{ competition.end_date }}<br>
+                <strong>Prize Pool:</strong> ${{ competition.prize_pool }}<br>
+                <strong>Registered User name:</strong> {{ user.username }}<br>
+
+            </p>
+            <div class="text-center mt-4">
+                <a href="{% url 'join_competition' %}" class="btn btn-primary btn-lg" style="padding: 10px 30px; font-size: 16px; border-radius: 5px;">Back to Competitions</a>
+            </div>
+        {% else %}
+
+            <p class="text-left mt-3" style="font-size: 18px; color: #555;">
+                Unfortunately, your payment for the competition: <strong>{{ competition.name }}</strong> was not successful.
+            </p>
+            <p class="text-left mt-3" style="font-size: 16px; color: #555;">
+                <strong>Reason:</strong> {{ payment_message }}
+            </p>
+            <div class="text-center mt-4">
+                <a href="{% url 'join_competition' %}" class="btn btn-danger btn-lg" style="padding: 10px 30px; font-size: 16px; border-radius: 5px;">Retry Registration</a>
+            </div>
+        {% endif %}
+    </div>
+    
+
+
+{% endblock %}

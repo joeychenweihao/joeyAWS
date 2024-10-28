@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Create New Competition
+{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/create_competition.css' %}">
+    <script src="{% static 'js/create_competition.js' %}" defer></script>
+    
+    <div id="create" class="modal" style="margin-top: 150px; display: flex; justify-content: center; align-items: center;">
+        <div class="modal-content booking-container" style="max-width: 600px; padding: 20px; background-color: #f9f9f9; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 10px; margin: 0 auto; border: 1px solid #ddd;">
+            <h2 style="text-align: center; font-size: 24px; margin-bottom: 20px;">Create a New Competition</h2>
+            {% if is_staff %}
+            
+            <p id="error-message" style="color: red; text-align: center;"></p>
+
+            <form method="POST" enctype="multipart/form-data" style="margin-top: 20px;" onsubmit="return validateForm(event);">
+                {% csrf_token %}
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label for="name">Competition Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" style="width: 95%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" required>
+                    </div>
+        
+                    <div class="form-group" style="margin-bottom: 15px; display: flex; justify-content: space-between;">
+                        <div style="width: 95%;">
+                            <label for="start_date">Start Date:</label>
+                            <input type="date" class="form-control" id="start_date" name="start_date" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" required>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 15px; display: flex; justify-content: space-between;">
+                        <div style="width: 95%;">
+                            <label for="end_date">End Date:</label>
+                            <input type="date" class="form-control" id="end_date" name="end_date" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" required>
+                        </div>
+                    </div>
+        
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label for="registration_fee">Registration Fee (in USD):</label>
+                        <input type="number" class="form-control" id="registration_fee" name="registration_fee" style="width: 95%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" step="0.01" required>
+                    </div>
+        
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label for="prize_pool">Prize Pool (in USD):</label>
+                        <input type="number" class="form-control" id="prize_pool" name="prize_pool" style="width: 95%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" step="0.01" required>
+                    </div>
+        
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label for="status">Status:</label>
+                        <select class="form-control" id="status" name="status" style="width: 95%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" required>
+                            <option value="upcoming">Upcoming</option>
+                            <option value="ongoing">Ongoing</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+        
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label for="image">Upload Competition Image:</label>
+                        <input type="file" class="form-control-file" id="image" name="image" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    </div>
+        
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; background-color: #007bff; border: none; border-radius: 5px; font-size: 16px; color: white; cursor: pointer;">Create Competition</button>
+                {% else %}
+        
+                    <div class="center-message">
+                        <h4>This feature is only available for administrators.</h4>
+                    </div>
+                {% endif %}
+            </form>
+
+        </div>
+    </div>
+    
+    
+    
+        
+    <div id = "error" class = "modal">
+        <div class="modal-content booking-container">
+            <span class="close">&times;</span>
+            <h1 id="errormodalTitle">error</h1>
+        </div>
+    </div>
+    
+{% endblock %}

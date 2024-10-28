@@ -1,0 +1,58 @@
+<ul class="css-list-contents">
+        {% for bullet in bulletinBoard %}
+            <li class="css-list-card">
+            <article class="css-article1">
+                <div>
+                    <div class="css-1se6xcg">
+                        <div class="css-3d5xom">
+                            <a aria-labelledby="revenge-of-the-savage-planet-gamescom-preview" rel="nofollow" href="{% url 'bulletin-detail' bullet.id %}">
+                                <div class="css-di7m23">
+                                    <div class="css-6ka11o">
+                                        <div class="css-u421q6">
+                                            <div class="css-rl9sa6">
+                                                <img data-testid="lazy-image-observer" data-image="{{ bullet.picture.url }}" class="css-1jk123r" alt="Revenge of the Savage Planet blends the Golden Age of Sci-Fi with an N64 collectathon" src="/static/images{{ bullet.picture.url }}" data-animated="animated">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="css-lc-right">
+                            <div class="css-lc-date" data-testid="news-item-meta">
+                                <div data-testid="NewsItemMeta">
+                                    <div class="css-geek62">
+                                        <div class="css-lc-date-text">
+                                            <span class="css-date">{{ bullet.since_now }}天之前</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2 id="">
+                                <a class="css-k008qs" aria-labelledby="revenge-of-the-savage-planet-gamescom-preview" href="{% url 'bulletin-detail' bullet.id %}">
+                                    <span class="css-1bsjt6k">
+                                        <div class="css-lgj0h8">
+                                            <div class="css-2itj6y">{{ bullet.post_title }}</div>
+                                        </div>
+                                    </span>
+                                </a>
+                            </h2>
+                            <div class="css-ls-text">
+                                <span class="css-9eu0v1">
+                                    <div class="css-lgj0h8">
+                                        <div class="css-hzffgw">{{ bullet.post_body }}</div>
+                                    </div>
+                                </span>
+                            </div>
+                            <a class="css-ls-read-more" aria-label="Read more" rel="nofollow" href="{% url 'bulletin-detail' bullet.id %}">
+
+                                <span class="css-6xq2vb">Read more</span>
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </li>
+        {% endfor %}
+
+    </ul>

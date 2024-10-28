@@ -1,0 +1,59 @@
+{% load static %}
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}EsportHeaven{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-xfgwQ0a+rUqEjB3inHN1g/z4E1b1ZlnsoIGtqeFVRpC02aWVsoIeb7K+tLXgSYw6" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="{% static 'js/base.js' %}" defer></script>
+</head>
+    <body>
+        <!-- nav bar -->
+        <nav class="nav">
+        <div class="container">
+            <div class="logo">
+                <a href="#">Esport<span>Heaven</span></a>
+            </div>
+            <div id="mainListDiv" class="main_list">
+                <ul class="navlinks">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'bulletin-board' %}">Bulletin Board</a></li>
+                    <li><a href="{% url 'join_competition' %}">Join Competition</a></li>
+                    <li><a href="{% url 'forum' %}">Forum</a></li>
+                    <li><a href="{% url 'user_profile' %}">User Profile</a></li>
+                    <li>
+            
+                        {% if user.is_authenticated %}
+                        <a href="#" class="navlinks" onclick="document.getElementById('logout-form').submit();">Logout</a>
+                            <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
+                            {% csrf_token %}
+                            </form>
+                        {% else %}
+                        <a href="{% url 'login' %}" class="navlinks">Login</a>
+                    {% endif %}
+                    </li>
+                 </ul>
+            </div>
+        <span class="navTrigger">
+            <i></i>
+            <i></i>
+            <i></i>
+        </span>
+    </div>
+</nav>
+
+    <!-- webpage content-->
+    <main>
+        {% block content %} 
+        <!-- input the webpage content -->
+        {% endblock %}
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>

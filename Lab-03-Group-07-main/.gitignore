@@ -1,0 +1,23 @@
+# .gitignore file to exclude sensitive or unnecessary files from Git tracking
+
+# Django-related files
+db.sqlite3                # SQLite database file
+*.pyc                     # Compiled Python files
+__pycache__/              # Python cache directory
+env/                      # Virtual environment
+venv/                     # Python virtual environment
+
+# Environment and secret files
+.env                      # Environment variables file
+
+# Node.js/React-related files
+node_modules/             # Node.js modules
+npm-debug.log*            # NPM debug log
+
+# OS-specific files
+.DS_Store                 # macOS Finder attributes
+Thumbs.db                 # Windows Explorer thumbnail cache
+
+# Logs and temporary files
+*.log                     # Log files
+*.tmp                     # Temporary files

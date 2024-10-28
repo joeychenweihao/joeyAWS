@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ post.title }} - EsportHeaven Forum
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/post_detail.css' %}">
+<script src="{% static 'js/post_detail.js' %}" defer></script>
+
+<div id="forum-url" data-url="{% url 'forum' %}" style="display:none;"></div>
+<div class="back-to-forum">
+    <a href="{% url 'forum' %}">&laquo; Back to Forum</a>
+</div>
+
+<div class="post-detail-container">
+    <h2>{{ post.title }}</h2>
+    <div class="post-header">
+        <p class="post-meta">by {{ post.creator.username }} on {{ post.created_at|date:"F d, Y" }}</p>
+        <div class="post-actions">
+
+        {% if user.is_staff %}
+            <form action="{% url 'pin_post' post.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="pin-btn">{{ post.pinned_at|yesno:"Unpin,Pin" }}</button>
+            </form>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+            <button class="like-btn" id="like-button-post-{{ post.id }}" data-post-id="{{ post.id }}" data-url="{% url 'like_post' post.id %}">
+                {% if user in post.post_likes.all %} Unlike {% else %} Like {% endif %}
+            </button>
+        {% else %}
+            <a href="{% url 'login' %}?next={% url 'post_detail' post.id %}" class="like-btn">Like</a>
+        {% endif %}
+        <span id="like-count-post-{{ post.id }}">{{ post.like_count }} Likes</span>
+
+        {% if post.creator == user or user.is_staff %}
+        <button class="delete-post-btn delete-btn" data-url="{% url 'delete_post' post.id %}">
+            Delete
+        </button>
+        {% endif %}
+        </div>
+    </div>
+    <div class="post-content">
+        <p>{{ post.content }}</p>
+        {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image">
+        {% endif %}
+    </div>
+
+    <h3>Comments:</h3>
+    <div class="comments">
+    {% for comment in post.comments.all %}
+        <div class="comment">
+            <p><strong>{{ comment.creator.username }}</strong>: {{ comment.content }}</p>
+            <p><small>{{ comment.comment_date|date:"F d, Y H:i" }}</small></p>
+
+            <!-- Like button for comment -->
+            {% if user.is_authenticated %}
+                <button class="like-comment-btn" id="like-button-comment-{{ comment.id }}" data-comment-id="{{ comment.id }}" data-url="{% url 'like_comment' comment.id %}">
+                    {% if user in comment.comment_likes.all %} Unlike {% else %} Like {% endif %}
+                </button>
+            {% else %}
+                <a href="{% url 'login' %}?next={% url 'post_detail' post.id %}" class="like-btn">Like</a>
+            {% endif %}
+            <span id="like-count-comment-{{ comment.id }}">{{ comment.like_count }} Likes</span>
+
+            <!-- Quote button for comment -->
+            <button class="delete-btn quote-btn" data-creator="{{ comment.creator.username }}" data-comment-id="{{ comment.id }}">
+                Quote
+            </button>
+
+            <!-- Delete button for comment -->
+            {% if comment.creator == user or user.is_staff %}
+            <button class="delete-comment-btn delete-btn" data-url="{% url 'delete_comment' comment.id %}">
+                Delete
+            </button>
+            {% endif %}
+        </div>
+    {% endfor %}
+    </div>
+
+    <!-- Comment Form -->
+    {% if user.is_authenticated %}
+    <form method="post" class="comment-form" action="{% url 'create_comment' %}">
+        {% csrf_token %}
+        <input type="hidden" name="post_id" value="{{ post.id }}">
+        <textarea name="content" rows="4" placeholder="Write a comment..."></textarea>
+        <button type="submit" class="submit-comment-btn">Post Comment</button>
+    </form>
+    {% else %}
+    <button class="submit-comment-btn" style="width: 100%;background: linear-gradient(45deg, #28a745, #1e8632);}">
+        <a href="{% url 'login' %}?next={% url 'post_detail' post.id %}" style="color: inherit; text-decoration: none;">Login to Comment</a>
+    </button>
+    {% endif %}
+</div>
+{% endblock %}

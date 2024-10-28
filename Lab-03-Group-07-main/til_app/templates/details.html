@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulletin Details</title>
+    <link rel="stylesheet" href="{% static 'css/details.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ bullet.post_title }}</h1>
+            <div class="details-date">
+                <p class="date">release date：{{ bullet.created_date |date:"Y-m-d" }}</p>
+                <p class="date">expiration date：{{ bullet.expiration_date |date:"Y-m-d" }}</p>
+            </div>
+
+        <div class="content">
+            <img src="/static/images{{ bullet.picture.url }}" alt="Related images" style="height: 250px;">
+            <p>{{ bullet.post_body }}</p>
+        </div>
+        <a href="{% url 'bulletin-board' %}" class="back-link">Back to Home</a>
+    </div>
+</body>
+</html>

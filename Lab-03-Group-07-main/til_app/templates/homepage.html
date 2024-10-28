@@ -1,0 +1,60 @@
+<!-- homepage.html -->
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    EsportHeaven - Home
+{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+    <script src="{% static 'js/homepage.js' %}" defer></script>
+    <div class="snap-container"> 
+ 
+        <section class="hero snap-section">
+            <h1>Join the Ultimate eSports Experience</h1>
+        </section>
+
+  
+        <section class="card-container snap-section">
+            <div class="card">
+                <img src="{% static 'image/bulletinicon.jpg' %}" alt="Bulletinboard">
+                <div class="card-content">
+                    <h3>Watch the Bulletin Board</h3>
+                    <p>Stay updated with the latest news and announcements!</p>
+                    <a href="/til_app/bulletin/" class="cta-button">Watch Now</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="{% static 'image/competition.jpg' %}" alt="Competition">
+                <div class="card-content">
+                    <h3>Join a Competition</h3>
+                    <p>Participate in our thrilling competitions and prove your skills!</p>
+                    <a href="/til_app/join-competition/" class="cta-button">Join Now</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="{% static 'image/forum.jpg' %}" alt="Forum">
+                <div class="card-content">
+                    <h3>Post in the Forum</h3>
+                    <p>Join discussions and connect with like-minded individuals!</p>
+                    <a href="/til_app/forum/" class="cta-button">Post now</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="snap-section">
+            <div class="about-us-container">
+                <h2 class="myH2">About Us</h2>
+                <p class="myP">
+                    Welcome to <strong>Ultimate eSports Experience</strong> — your one-stop destination for all things competitive gaming. Our platform is designed to bring together eSports enthusiasts from around the world, offering a seamless experience to stay updated on the latest events, participate in thrilling competitions, and engage in meaningful discussions through our community forum.
+                </p>
+                <p class="myP">
+                    Our mission is to provide a platform that not only allows players to compete but also fosters a vibrant and interactive eSports community. Whether you're a seasoned competitor or new to the world of eSports, our platform offers a space where you can grow, connect, and share your passion.
+                </p>
+                
+            </div>
+        </section>
+    </div>
+{% endblock %}

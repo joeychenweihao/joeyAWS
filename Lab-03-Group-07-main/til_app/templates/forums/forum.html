@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    EsportHeaven - Forum
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/forum.css' %}">
+<script src="{% static 'js/forum.js' %}" defer></script>
+
+<div class="forum-container">
+    <header class="forum-title">EsportHeaven Forum</header>
+    
+    <div class="post-list-container">
+        <div class="post-list">
+            {% for post in posts %}
+            <a href="{% url 'post_detail' post.id %}" class="post-box-link">
+                <div class="post-box {% if post.pinned_at %}pinned{% endif %}">
+                    <h3>{{ post.title }}</h3>
+                    <div class="post-meta">
+                        <p>by {{ post.creator.username }} on {{ post.created_at|date:"F d, Y" }}</p>
+                        {% if post.pinned_at %}
+                            <span class="pinned-status">📌 Pinned</span>
+                        {% endif %}
+                    </div>
+    
+                    <div class="post-stats">
+                        <span class="like-count">❤️ {{ post.like_count }}</span>
+                        <span class="comment-count">💬 {{ post.comments.count }}</span>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+<!-- <button class="create-post-btn" id="createPostBtn">Create Post</button> -->
+
+{% if user.is_authenticated %}
+    <!-- <button class="create-post-btn" id="createPostBtn">Create Post</button> -->
+    <button class="create-post-btn" id="createPostBtn" data-url="{% url 'create_post' %}">Create Post</button>
+{% else %}
+    <a href="{% url 'login' %}?next={% url 'forum' %}" class="create-post-btn">Create Post</a>
+{% endif %}
+
+<div class="create-post-form-container" id="createPostFormContainer">
+    <form class="create-post-form" method="POST" enctype="multipart/form-data" action="{% url 'create_post' %}">
+        {% csrf_token %}
+        <h2>Create a New Post</h2>
+
+        {% if form.errors %}
+            <div class="form-errors">
+                <p>There were errors in your form:</p>
+                <ul>
+                    {% for field, errors in form.errors.items %}
+                        <li>{{ field }}: {{ errors|striptags }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" placeholder="Enter title" required>
+
+        <label for="image">Import Image:</label>
+        <input type="file" id="image" name="image">
+
+        <label for="content">Content:</label>
+        <textarea id="content" name="content" placeholder="Write your post content here..." required></textarea>
+
+        <div class="form-buttons">
+            <button type="submit" class="submit-btn">Post</button>
+            <button type="button" class="cancel-btn" id="cancelPostBtn">Cancel</button>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+.cta-button {
+    margin-top: 20px;
+    display: inline-block;
+    background-color: #00E676;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: 700;
+}
+
+.cta-button:hover {
+    background-color: #0fab5f;
+    transform: translateY(-3px);
+}
+
+
+.nav {
+    text-align: center;
+}
+
+
+.cta-button {
+    width: 200px;
+}
+
+
+.text-center {
+    color: #dddddd;
+}

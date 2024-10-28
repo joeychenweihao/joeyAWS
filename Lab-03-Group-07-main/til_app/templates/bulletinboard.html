@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulletin board</title>
+
+    <link rel="stylesheet" href="{% static 'css/bulletinboard.css' %}">
+
+
+</head>
+<body>
+
+     <video autoplay muted loop id="videoBG">
+        <source src="{%static 'videos/PsyOpsMasterYi.mp4' %}" type="video/mp4">
+    </video>
+
+     <header class="page-header">
+       <!-- <h1> New Games Competitions</h1>  Main title for the page -->
+     </header>
+
+
+     <div class="css-TopBar">
+
+        <div class="css-SearchLayout">
+            <div class="css-search">
+                <div class="css-search-box">
+                    <div class="css-search-layout" id="SearchLayout" >
+
+                        <div class="css-search-icon">
+                            <button class="css-search-button" aria-label="Search store" onclick="refresh()">
+                                <span class="css-1s62n5m" aria-hidden="true" data-testid="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="svg css-uwwqev" viewBox="0 0 21 20" preserveAspectRatio="xMidYMid meet">
+                                        <g transform="scale(1 -1) rotate(-45 -11.93502884 -2)" stroke="currentColor" stroke-width="1.65" fill="none" fill-rule="evenodd">
+                                            <circle cx="7.70710678" cy="7.70710678" r="7"></circle>
+                                            <path d="M15.2071068 8.62132034h5.6923881" stroke-linecap="square"></path>
+                                        </g>
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="css-search-more">
+                            <div class="css-sm">
+                                <input class="css-word" data-testid="input-input" placeholder="Search more" id="search_txt" name="search_txt" value="">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-menu">
+                <label for="sortby">Sort By:</label>
+                    <select id="sortby" name="sort">
+                        <option style="display: none" value="post_title" selected ></option>
+                        <option value="date">Date</option>
+                    </select>
+            </div>
+        </div>
+         <div>
+             {% if user_role == 'admin' %}
+             <form action="/til_app/manage/">
+                <button onclick="">Manage Bulletins</button>
+             </form>
+             {% endif %}
+         </div>
+
+
+     </div>
+
+    <div class="card-container" id="top">
+        {% for top in top_bullet %}
+            <div class="news-top">
+
+                <a href="{% url 'bulletin-detail' top.id %}">
+                <img src="/static/images/{{ top.picture.url }}" alt="Final Fantasy XVI">
+                </a>
+                <div class="content1">
+                     <span class="date">{{ top.since_now }}D AGO</span>
+                         <h2>{{ top.post_title }}</h2>
+                            <p>{{ top.post_body }}</p>
+                            <a href="{% url 'bulletin-detail' top.id %}">Read more</a>
+                </div>
+
+            </div>
+        {% endfor %}
+    </div>
+
+<div data-testid="feed-items-list" id="list-contents">
+    {% include 'bullet_table.html' %}
+</div>
+
+
+    <div id="pagination" class="pagination">
+    <a href="#" id="prev">Previous</a>
+    <a href="#" class="page-number" data-page="1">1</a>
+    <a href="#" class="page-number" data-page="2">2</a>
+    <a href="#" class="page-number" data-page="3">3</a>
+    <a href="#" class="page-number" data-page="4">4</a>
+    <a href="#" id="next">Next</a>
+    </div>
+
+    <script>
+
+            const itemsPerPage = 3;
+            const newsCards = document.querySelectorAll(".css-list-card");
+            const totalItems = newsCards.length;
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+            let currentPage = 1;
+
+            function showPage(page) {
+                const newsCards = document.querySelectorAll(".css-list-card");
+                newsCards.forEach((card, index) => {
+                    card.style.display = "none";
+                });
+                document.querySelectorAll(".page-number").forEach((button, index) => {
+                    if (index >= totalPages){
+                        button.style.display="none"
+                    }
+                });
+
+
+                const start = (page - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+
+                for (let i = start; i < end && i < totalItems; i++) {
+                    newsCards[i].style.display = "block";
+                }
+            }
+
+
+            function updatePaginationButtons(page) {
+                document.querySelectorAll(".page-number").forEach((button) => {
+                    button.classList.remove("active");
+                });
+                document.querySelector(`[data-page="${page}"]`).classList.add("active");
+
+                document.getElementById("prev").style.visibility = page === 1 ? "hidden" : "visible";
+                document.getElementById("next").style.visibility = page === totalPages ? "hidden" : "visible";
+            }
+
+
+            document.querySelectorAll(".page-number").forEach((button) => {
+                button.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    currentPage = parseInt(this.getAttribute("data-page"));
+                    showPage(currentPage);
+                    updatePaginationButtons(currentPage);
+                });
+            });
+
+
+            document.getElementById("prev").addEventListener("click", function (e) {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    showPage(currentPage);
+                    updatePaginationButtons(currentPage);
+                }
+            });
+
+            document.getElementById("next").addEventListener("click", function (e) {
+                e.preventDefault();
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    showPage(currentPage);
+                    updatePaginationButtons(currentPage);
+                }
+            });
+            function refreshTable(){
+                    var search_txt=$('#search_txt').val();
+                    var sort = $('#sortby').val();
+                    console.log(search_txt);
+                    console.log(sort);
+                    $.ajax({
+                        url:'{% url "refresh_table" %}',
+                        type: 'GET',
+                        data: {
+                            'search_txt': search_txt,
+                            'sort': sort
+                        },
+                        success: function (response){
+                            console.log("success");
+                            $("#list-contents").html(response.html);
+                            showPage(currentPage);
+                            updatePaginationButtons(currentPage);
+                        }
+                    })
+                        }
+
+            showPage(currentPage);
+            updatePaginationButtons(currentPage);
+            setInterval(refreshTable, 500000);
+            function refresh(){
+                $('#top').css('display', 'none');
+            refreshTable()
+            }
+
+
+    </script>
+
+
+
+</body>
+</html>
+
+{% endblock %}

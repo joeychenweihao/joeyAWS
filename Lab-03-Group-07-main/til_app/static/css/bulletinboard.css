@@ -1,0 +1,425 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+/* homepage.css */
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+    background: url("../image/mainpage3.jpg") no-repeat center center fixed;
+    background-size: cover;
+    scroll-behavior: smooth;
+}
+
+.page-header {
+    background-color:transparent; /* Dark background for the header */
+    color: ghostwhite; /* White text color */
+    padding: 40px 20px; /* Padding around the text */
+    text-align: center; /* Centers the header text */
+
+}
+
+.card-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+
+.news-card {
+    width: 45%;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 0px;
+    border-radius: 10px;
+    overflow: hidden;
+
+}
+
+.news-card img {
+    border-radius: 10px 10px 0 0;
+}
+
+.news-top {
+    width: 45%;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 0px;
+    border-radius: 10px;
+
+}
+
+.news-top img {
+    width: 100%;
+    height: 350px;
+    border-radius: 10px 10px 0 0;
+}
+
+.content1 {
+    padding: 10px;
+    .date {
+    font-size: 12px;
+    color: #000000;
+}
+
+h2 {
+    font-size: 16px;
+    margin: 10px 0 5px;
+}
+
+p {
+    font-size: 14px;
+}
+
+a {
+    color: #1a85ff;
+    text-decoration: none;
+}
+}
+
+.date {
+    font-size: 12px;
+    color: #000000;
+}
+
+h2 {
+    font-size: 16px;
+    margin: 10px 0 5px;
+}
+
+p {
+    font-size: 14px;
+}
+
+a {
+    color: #1a85ff;
+    text-decoration: none;
+}
+
+
+@media (max-width: 800px) {
+    .news-card {
+        width: 100%;
+    }
+}
+
+
+/* Reset margins and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic styling for the list and its items */
+ul.css-list-contents {
+    list-style-type: none;
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+li.css-list-card {
+    max-width: 100%;
+    max-height: 100%;
+    background-color: #fff;
+    margin: 20px auto;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Subtle shadow for 3D effect */
+    width: 95%;
+}
+
+
+
+/* Styling for the article component */
+article.css-article1 {
+    display: flex;
+    flex-direction: column;
+    color: #fff; /* White text color */
+}
+
+/* Image container styling
+div.css-1se6xcg {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}*/
+.css-1se6xcg {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.css-3d5xom, .css-lc-right {
+    flex: 1;
+    padding: 10px;
+    color: black;
+}
+
+
+/* Image styling */
+img.css-1jk123r {
+    width: 100%; /* Full width of the container */
+    height: 350px; /* Maintain aspect ratio */
+    transition: transform 0.3s ease; /* Smooth transformation on hover */
+}
+
+img.css-1jk123r:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Content styling below the image */
+div.css-lc-right {
+    padding: 10px; /* Padding around content */
+    background: rgba(0, 0, 0, 0); /* Slightly transparent background for readability */
+}
+
+/* Meta data styling (e.g., date) */
+div.css-lc-date {
+    font-size: 0.85rem;
+    opacity: 0.75; /* Less emphasis on meta data */
+    margin-bottom: 5px; /* Space below meta */
+}
+
+/* Title and description */
+h2 {
+    margin: 10px 0; /* Vertical spacing around the title */
+}
+
+div.css-ls-text {
+    margin-bottom: 10px; /* Space above the 'Read more' link */
+}
+
+a.css-ls-read-more, a.css-k008qs {
+    color: #4A90E2; /* Bright link color for contrast */
+    text-decoration: none; /* No underlines on links */
+}
+
+a.css-ls-read-more:hover, a.css-k008qs:hover {
+    text-decoration: underline; /* Underline on hover for links */
+}
+
+
+
+/* Container for the left side elements like search icon */
+.css-SearchLayout {
+    display: flex;
+    align-items: center;
+}
+
+/* Search icon button */
+.css-search-button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Search icon styles */
+.svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+
+/* Generic styles for menu items and buttons */
+a, button {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px; /* Space between menu items */
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* Arrow icons and other SVGs within buttons and links */
+.svg {
+    margin-left: 5px; /* Space between text and icon */
+}
+
+
+
+
+/* Basic setup for the main navigation bar container */
+.css-TopBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 60px; /* Fixed height for uniformity */
+    color: white; /* Ensuring text is visible against the background */
+    background-color: #2a2f3a;
+    padding: 1px 20px;
+}
+
+/* Style for the search button and alignment of elements within */
+.css-search-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+/* SVG icon styles within the search button */
+.svg.css-uwwqev {
+    fill: white; /* SVG color */
+    width: 24px;
+    height: 24px;
+    margin-right: 10px; /* Space between the icon and the input field */
+}
+
+/* Styling for the input field within the search area */
+.css-word {
+    border: none;
+    background: none;
+    font-size: 12px;
+    color: white; /* Text color */
+    outline: none; /* Removes focus border */
+    padding: 8px 0;
+}
+
+/* Ensures placeholder text is also styled */
+.css-word::placeholder {
+    color: white;
+}
+
+
+
+/* Rotation effect for dropdown arrow */
+.css-cvq2zj {
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Rotate the arrow on button click */
+.css-vt5r4x[aria-expanded="true"] .css-cvq2zj {
+    transform: rotateZ(180deg);
+}
+
+
+.css-search-layout {
+    display: flex; /* This makes it a flex container and aligns children in a row */
+    align-items: center; /* This centers the items vertically */
+    justify-content: space-between; /* This adds space between the children */
+}
+
+.css-search-icon {
+    width: 30%; /* This child now takes up 30% of the width of the container */
+
+}
+
+.css-search-more {
+    width: 70%; /* This child now takes up the remainder, which is 70% of the width */
+}
+
+.filter-menu {
+    font-family: Arial, sans-serif;
+    color: white; /* Text color */
+    padding: 10px; /* Padding around the content */
+    border-radius: 8px; /* Add rounded corners */
+}
+
+.filter-menu select {
+    color: white; /* Text color, for contrast */
+    background-color: transparent;
+    padding: 5px 10px; /* Padding inside the dropdown menu */
+    font-size: 12px;
+    cursor: pointer; /* Cursor appears as a pointer, indicating it can be clicked */
+    border-radius: 4px; /* Add rounded corners to the dropdown menu */
+}
+
+.filter-menu select:focus {
+    outline: none; /* Remove default focus outline */
+}
+
+.filter-menu label {
+    margin-right: 10px; /* Space between the label and the select box */
+}
+
+/* If buttons or other input fields also need rounded corners, similar styles can be added */
+.button, .input {
+    border-radius: 4px; /* Similarly, add rounded corners to buttons or input fields */
+}
+
+#videoBG {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    margin: 0 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #f1f1f1;
+}
+
+.pagination a.active {
+    background-color: #4A90E2;
+    color: white;
+    pointer-events: none;
+}
+
+.pagination a#prev, .pagination a#next {
+    font-weight: bold;
+}
+
+.pagination a[style="visibility: hidden;"] {
+    display: none;
+}
+
+
+#historical-bulletins-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#historical-bulletins-button:hover {
+    background-color: #0056b3;
+}
+
+.css-TopBar, .card-container, [data-testid="feed-items-list"] {
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
+    max-height: 100%;
+}
+

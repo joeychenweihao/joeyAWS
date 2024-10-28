@@ -1,0 +1,199 @@
+/* styles.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100%;
+    background-image: linear-gradient( #434343 0%, black 100%);
+    background-attachment: fixed;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+
+}
+
+h1 {
+    color: #f3f3f3;
+    text-align: center;
+}
+
+.title-main{
+    color: black;
+    text-align: center;
+}
+
+ .title-sub {
+    color: white;
+    text-align: center;
+}
+.form-container {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    display: block;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    color: white;
+    background-color: #1d346e;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1d346e;
+}
+
+
+
+.image-preview-container {
+    position: relative;
+    width: 300px;
+    justify-content: center;
+    margin: 20px auto 30px;
+}
+
+.image-preview-container img {
+    width: 100%;
+    height: auto;
+}
+
+.image-preview-container button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#upload-image {
+    display: block;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.announcements-list{
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+
+}
+.announcement {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+}
+
+.announcement-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1; /* Make the content fill the extra space */
+    margin-right: 10px;
+    width: 80%;
+}
+
+.announcement-title {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    margin-right: 10px;
+    line-height: 1;
+    margin-bottom: 0px;
+}
+
+.announcement-image {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.announcement-text {
+    font-size: 14px;
+    color: #666;
+}
+
+.announcement-actions {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    gap: 10px;
+}
+
+.edit-button, .delete-button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.edit-button:hover, .delete-button:hover {
+    background-color: #0056b3;
+}
+
+.details-date{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 ;
+}
+.date {
+    text-align: center;
+    color: #666;
+    font-size: 10px;
+    padding: 0;
+    margin: 5px;
+}
+
+
+
+input[type="text"], textarea, input[type="date"] {
+    width: 100%;              /* Ensures the input fields fill their container */
+    padding: 10px 12px;        /* Unified padding, adjust as needed to match overall design */
+    margin-bottom: 10px;      /* Unified bottom margin to maintain spacing between elements */
+    border: 1px solid #ccc;   /* Unified border style, color and width can be adjusted per design requirements */
+    box-sizing: border-box;   /* Width calculation method includes border and padding */
+    border-radius: 4px;       /* Slight rounded corners for better visual appearance */
+}
+
+.publish-date,.expiry-date{
+    max-width: 100%;
+    max-height: 100%;
+
+}

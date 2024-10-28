@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<body style="background-image: url('{% static "image/mainpage3.jpg" %}'); background-size: cover; background-position: center center; background-attachment: fixed;">
+
+<div class="container" style="margin-top: 150px;">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-12">
+            <h2 class="text-center text-light mb-4">Login</h2>
+            {% if messages %}
+                <div class="alert alert-info">
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <form method="post" class="bg-white p-5 rounded shadow-lg">
+                {% csrf_token %}
+                <div class="form-group mb-4">
+                    <label for="username" class="text-dark">Username:</label>
+                    <input type="text" class="form-control" name="username" id="username" required>
+                </div>
+                <div class="form-group mb-4">
+                    <label for="password" class="text-dark">Password:</label>
+                    <input type="password" class="form-control" name="password" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </form>
+
+            <p class="text-center text-light mt-4">Don't have an account? <a href="{% url 'register' %}" class="text-info">Register here</a></p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

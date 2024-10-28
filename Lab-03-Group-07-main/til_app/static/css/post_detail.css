@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
+
+/* General styles */
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+    background: url("../image/mainpage3.jpg") no-repeat center center fixed;
+    background-size: cover;
+    scroll-behavior: smooth;
+}
+
+.post-detail-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 80px auto 20px; 
+    max-width: 800px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Title styles */
+.post-detail-container h2 {
+    font-size: 2.2em;
+    color: grey;
+    margin-bottom: 10px;
+}
+
+/* Post header styles */
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.post-meta {
+    margin: 0;
+    color: #666;
+}
+
+/* Post content styles */
+.post-content {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.post-content img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* Button styles */
+.post-actions, .comment-actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.like-btn, .delete-btn, .like-comment-btn, .submit-comment-btn{
+    font-size: 1rem;
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.delete-btn, .delete-comment-form .delete-btn {
+    background: linear-gradient(45deg, #dc3545, #a72834);
+}
+
+.pin-btn{
+    font-size: 1rem;
+    background: linear-gradient(45deg, #c0dc35, #a7a328);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.like-btn:hover, .delete-btn:hover, .like-comment-btn:hover, .submit-comment-btn:hover, .delete-comment-form .delete-btn:hover, .pin-btn:hover{
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Comments section styles */
+.comments {
+    margin-top: 20px;
+}
+
+.comment {
+    background: #f8f9fa;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.comment p {
+    margin: 0;
+}
+
+/* Comment form styles */
+.comment-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.comment-form textarea {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    resize: vertical;
+}
+
+.comment-form button {
+    background: linear-gradient(45deg, #28a745, #1e8632);
+}
+
+.comment-form button:hover {
+    background: linear-gradient(45deg, #218838, #18692b);
+}
+
+/* Back to forum link */
+.back-to-forum {
+    position: fixed;
+    top: 70px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 12px 18px;
+    border-radius: 5px;
+    z-index: 1000; 
+}
+
+.back-to-forum a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.back-to-forom a:hover {
+    color: #00E676;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .post-detail-container {
+        padding: 15px;
+        margin: 100px 5%;
+    }
+
+    .post-actions, .comment-actions {
+        flex-direction: column;
+    }
+}
+.quote-btn {
+    background: linear-gradient(45deg, #28a745, #13862d) !important;
+}

@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Create New bulletin
+{% endblock %}
+
+{% block content %}
+
+{% load static %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <link rel="stylesheet" href="{% static 'css/bulletinbmanage.css' %}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Manage - Bulletins</title>
+        
+
+    </head>
+    <body>
+        <div class="container" style="margin-top: 150px;">
+            <h1>Manage Bulletins</h1>
+            {% if is_staff %}
+                <div class="form-container">
+                    <h2 class="title-main">Add/Edit Bulletin</h2>
+                    <form method="POST" action="{% url "bulletin-manage" %}" enctype="multipart/form-data"> 
+                        {% csrf_token %} 
+                        <p id="error-message" style="color: red; text-align: center;"></p>
+                        <input name="id" value="{{ cur_bullet.id }}" style="display: none">
+                        <input name="img" value="{{ cur_bullet.picture }}" style="display: none">
+
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" name="title" placeholder="Enter title" value="{{ cur_bullet.post_title }}" required>
+
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" placeholder="Enter message" required>{{ cur_bullet.post_body }}</textarea>
+
+                        <!-- picture upload -->
+                        <label for="upload-image">Upload Cover Image:<br><span style="
+                        color: gray;font-size: 10px">(Please upload a photo that is no
+                        larger than 480 × 350px, otherwise it will be compressed!)</span></label>
+                        <input type="file" id="upload-image" name="image" value="{{ cur_bullet.picture }}" accept="image/*"  >
+
+                        <!-- <input type="file" id="upload-image" name="image" value="{{ cur_bullet.picture }}" accept="image/*" required
+                           oninvalid="checkFile(this)"  >  -->
+
+                        <!-- picture preview -->
+                        <div class="image-preview-container" style="position: relative; display: none;">
+                            <img id="image-preview" alt="Image Preview" style="width: 100%; max-width: 300px; object-fit: cover; display: block;">
+                            <button type="button" onclick="removeImage()" style="position: absolute; top: 0; right: 0;">×</button>
+                        </div>
+
+                        <div class="publish-date">
+                            <label for="release-date">Release Date:</label>
+                            <input type="date" id="release-date" name="release_date" value="{{ cur_bullet.updated_date |date:"Y-m-d"}}" required>
+                        </div>
+
+                        <div class="expiry-date">
+                            <label for="expiry-date">Expiry Date:</label>
+                            <input type="date" id="expiry-date" name="expiry_date" value="{{ cur_bullet.expiration_date |date:"Y-m-d"}}" required>
+                        </div>
+
+                        <label >place it on top?</label>
+                        <select name="is_top" style="right: 100px">
+                            <option value="1">top</option>
+                            <option value="2" selected>no top</option>
+                        </select>
+                        <button type="submit" onclick="mySubmit(event)">Submit</button>
+                    </form>
+                </div>
+
+                </div>
+
+            <div class="announcements-list">
+                    <h2 class="title-sub">All Bulletins</h2>
+                    {% for bul in bullet %}
+                    <div class="announcement">
+                        <div class="announcement-content">
+                            <h3 class="announcement-title">{{ bul.post_title }}</h3>
+                                <div class="details-date">
+                                    <p class="date">{{ bul.created_date |date:"Y-m-d " }}</p>
+                                    <p class="date">expiration date：{{ bul.expiration_date |date:"Y-m-d" }}</p>
+                                </div>
+                            <img src="/static/images/media/{{ bul.picture }}"  alt="default image" class="announcement-image">
+                            <p class="announcement-text">{{ bul.post_body }}</p>
+                        </div>
+
+                        <div class="announcement-actions">
+                            <a type="button" class="edit-button" href="{% url "bulletin-manage" %}?id={{ bul.id }}">Edit</a>
+                            <a type="button" class="edit-button" href="{% url "bulletin_del" %}?id={{ bul.id }}">Delete</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            {% else %}
+           
+                <div style="text-align: center;">
+                    <h2 style="color: red;">This feature is only available for administrators.</h2>
+                </div>
+
+            {% endif %}
+
+        <script>
+
+
+
+        document.querySelector('form').addEventListener('submit', function(event) {
+            var imageInput = document.getElementById('upload-image');
+            var errorMessage = document.getElementById('error-message');
+
+            
+            if (imageInput.files.length === 0) {
+                event.preventDefault(); 
+                errorMessage.textContent = 'Please upload a cover image before submitting.'; 
+                return false;
+            }
+        });
+
+        document.getElementById('upload-image').addEventListener('change', function(event) {
+            if (event.target.files && event.target.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var previewContainer = document.querySelector('.image-preview-container');
+                    previewContainer.style.display = 'block';
+                    document.getElementById('image-preview').src = e.target.result;
+                }
+                reader.readAsDataURL(event.target.files[0]);
+
+             
+                document.getElementById('error-message').textContent = '';
+            }
+        });
+
+        function removeImage() {
+            var previewContainer = document.querySelector('.image-preview-container');
+            previewContainer.style.display = 'none';
+            document.getElementById('image-preview').src = '';
+            document.getElementById('upload-image').value = '';
+
+           
+            document.getElementById('error-message').textContent = 'Please upload a cover image before submitting.';
+        }
+
+     
+        function checkFile(el) {
+            let file = $("input[name=img]").val()
+
+            if(file){
+                el.required=false
+            }else{
+                if(el.files.length< 1){
+                    el.setCustomValidity('please select image');
+                }else {
+                    el.setCustomValidity('');
+                }
+            }
+
+        }
+        function mySubmit(event){
+            let image_el = document.getElementById('upload-image');
+            let old_file = $("input[name=img]").val()
+            if(old_file){
+            }else{
+                if(image_el.files.length< 1){
+                    alert("Please upload a cover image before submitting.");
+                    event.preventDefault()
+                    return
+                }
+               
+            }
+
+        }
+
+        </script>
+
+    </body>
+    </html>
+{% endblock %}

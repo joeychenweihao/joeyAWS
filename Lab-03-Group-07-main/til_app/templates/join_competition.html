@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    EsportHeaven - Join Competition 
+{% endblock %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/join_competition.css' %}">
+    <script src="{% static 'js/join_competition.js' %}" defer></script>
+    <script>
+        var isUserLoggedIn = {{ request.user.is_authenticated|lower }};
+    </script>
+
+    <div class="wrapper">
+        <h2><strong>All Competition Games<span>( {{ competitions|length }} )</span></strong></h2>
+        <div class="cards" >
+            {% for competition in competitions %}
+                <figure class="card" data-competition-date="{{ competition.start_date }}" data-competition-name = "{{ competition.name }}" data-competition-pk="{{ competition.pk }}">
+                    <img src="{{ competition.image.url }}" alt={{ competition.name }} />
+                    <figcaption>{{ competition.name }}</figcaption>
+                </figure>
+            {% endfor %}
+        </div>
+        
+
+        {% if upcoming_competitions_by_year %}
+            
+            {% for year, competitions in upcoming_competitions_by_year.items %}
+                <section class="month-section">
+                    <h2><strong>{{ year }} Upcoming Competition Games<span>( {{ competitions|length }} )</span></strong></h2>
+                
+                    <div class="cards">
+                        {% for competition in competitions %}
+                            <figure class="card" data-competition-date="{{ competition.start_date }}" data-competition-name = "{{ competition.name }}" data-competition-pk="{{ competition.pk }}">
+                                <img src="{{ competition.image.url }}" alt="{{ competition.name }}" />
+                                <figcaption>{{ competition.name }}</figcaption>
+                            </figure>
+                        {% endfor %}
+                    </div>
+                </section>
+            {% endfor %}
+        {% else %}
+        <section class="month-section">
+            <h2><strong>Upcoming Competition Games<span>( 0 )</span></strong></h2>
+        </section>
+            
+        {% endif %}
+        {% if past_competitions %}
+            <section class="month-section">
+                <h2><strong>Past Competition Games<span>( {{ past_competitions|length }} )</span></strong></h2>
+                
+                <div class="cards">
+                    {% for competition in past_competitions %}
+                        <figure class="card" data-competition-date="{{ competition.start_date }}" data-competition-name = "{{ competition.name }}" data-competition-pk="{{ competition.pk }}">
+                            <img src="{{ competition.image.url }}" alt="{{ competition.name }}" />
+                            <figcaption>{{ competition.name }}</figcaption>
+                        </figure>
+                    {% endfor %}
+                </div>
+            </section>
+        {% else %}
+            <section class="month-section">
+                <h2><strong>Past Games<span>( 0 )</span></strong></h2>
+            </section>
+        {% endif %}
+    </div>
+
+    <div id = "error" class = "modal">
+        <div class="modal-content booking-container">
+            <span class="close">&times;</span>
+            <h1 id="errormodalTitle">error</h1>
+        </div>
+    </div>
+    <div id="signupModal" class="modal">
+        <div class="modal-content booking-container">
+            <span class="close">&times;</span>
+            <h1 id="modalTitle">Join a Competition</h1>
+            <form id="signup-form" method="post" action="{% url 'join_competition' %}">
+                {% csrf_token %}
+                <input type="hidden" id="competition-pk" name="competition-pk" value="">
+                <!-- <input type="text" id="competition-name" name="competition_name"> -->
+
+        
+                <label for="competitor-name">Your Name:</label>
+                <input type="text" id="competitor-name" name="competitor-name" value="{{ request.user.username }}" readonly>
+    
+                <label for="competitor-email">Email:</label>
+                <input type="email" id="competitor-email" name="competitor-email" value="{{ request.user.email }}" readonly>
+    
+    
+                <label for="competition-name">Competition Name:</label>
+                <input type="text" id="competition-name" name="competition-name" readonly>
+
+                <label for="competition-start-date">Competition Start Date:</label>
+                <input type="text" id="competition-start-date" name="competition-start-date" readonly>
+    
+   
+                <label for="competition-category">Select Category:</label>
+                <select id="competition-category" name="competition-category" required>
+                    <option value="">Please select a category</option>
+                    <option value="junior">Junior</option>
+                    <option value="senior">Senior</option>
+                    <option value="veteran">Veteran</option>
+                </select>
+    
+               
+                <label for="card-number">Card Number:</label>
+                <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9876 5432" required>
+    
+                <label for="expiry-date">Expiry Date:</label>
+                <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" required>
+    
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" placeholder="123" required>
+    
+           
+                <button type="submit" class="confirm-button" id="confirmBtn">Confirm</button>
+            </form>
+        </div>
+    </div>
+    
+    
+
+   
+{% endblock %}

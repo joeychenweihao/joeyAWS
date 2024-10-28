@@ -1,0 +1,338 @@
+
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+    background: url("../image/mainpage3.jpg") no-repeat center center fixed;
+    background-size: cover;
+    scroll-behavior: smooth;
+    color: #333; 
+}
+
+
+.nav {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background: rgba(0, 0, 0, 0.85); 
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.nav div.logo a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.nav div.logo a span {
+    color: #00E676;
+}
+
+.nav div.main_list ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-end;
+    margin-right: 60px;
+}
+
+.nav div.main_list ul li {
+    display: block;
+}
+
+.nav div.main_list ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav div.main_list ul li a:hover {
+    color: #00E676;
+    transform: translateY(-3px);
+}
+
+.nav div.main_list ul li a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background: #00E676;
+    transition: width 0.3s;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+
+.nav div.main_list ul li a:hover::after {
+    width: 100%;
+}
+
+
+.forum-title {
+    text-align: center;
+    font-size: 3rem;
+    color: #fff;
+    margin-top: 100px; 
+}
+
+
+.create-post-btn {
+    position: fixed; 
+    bottom: 20px; 
+    right: 20px; 
+    padding: 15px 25px; 
+    background-color: #00E676;
+    color: white; 
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    z-index: 2000; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    font-size: 1.4rem;
+    transition: transform 0.3s ease, background-color 0.3s ease; 
+}
+
+.create-post-btn:hover {
+    background-color: #0fab5f;
+    transform: translateY(-3px); 
+}
+
+.no-posts {
+    color: white;
+    font-size: 20px;
+}
+
+
+.post-list {
+    margin-top: 60px;
+    padding: 0 10%;
+}
+
+
+.post {
+    background: #fff;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative; 
+    transition: box-shadow 0.3s;
+}
+
+
+.post:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.post h3 {
+    margin: 0 0 10px;
+    font-size: 4rem;
+    color: #333;
+}
+
+.post .post-author {
+    color: #555;
+    font-size: 1.2rem;
+}
+
+.post .post-time {
+    font-size: 1rem;
+    color: #888;
+    margin-top: 5px;
+}
+
+
+
+.create-post-form-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 80%;
+    z-index: 1001;
+    display: none;
+}
+
+.create-post-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-post-form label {
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.create-post-form input[type="text"],
+.create-post-form input[type="file"],
+.create-post-form textarea {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1.2rem;
+}
+
+.create-post-form textarea {
+    height: 150px;
+    resize: none;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Submit posting button */
+.submit-btn {
+    background-color: #00E676;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    font-size: 1.4rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #0fab5f;
+    transform: translateY(-3px);
+}
+
+
+/* Cancel posting button */
+.cancel-btn {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    font-size: 1.4rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cancel-btn:hover {
+    background-color: #d32f2f;
+    transform: translateY(-3px);
+}
+
+/* Delete post button */
+.delete-btn {
+    background: #dc3545;
+    border: none;
+    color: white;
+    padding: 5px 8px;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s, transform 0.2s;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+    transform: scale(1.1); 
+}
+
+.delete-post-form {
+    display: inline;
+}
+
+/* Post Box 样式更新 */
+.post-box-link {
+    text-decoration: none;
+    color: inherit;
+    display: block; 
+}
+
+.post-box {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.post-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.post-link h3 {
+    margin: 0;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.post-meta {
+    font-size: 0.9em;
+    color: #888;
+}
+
+.post-stats {
+    display: flex;
+    gap: 10px;
+    font-size: 0.9em;
+    color: #333;
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+}
+
+.like-count {
+    color: grey;
+}
+
+.comment-count {
+    color: grey;
+}
+
+
+.post-box.pinned {
+    border: 2px solid gold;
+    background-color: #ffffe0;
+}
+
+.pinned-status {
+    color: red;
+    font-weight: bold;
+}
